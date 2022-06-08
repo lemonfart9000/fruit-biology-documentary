@@ -88,14 +88,9 @@ local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
 request(abcdef)
 end
 
-game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(fruit)
-    for i, v in pairs(leg) do
-        if fruit.Name == v and notify == true then
-            webhook(fruit)
-            notify = false
-            wait(180)
-            notify = true
-        end
+game.Workspace.ChildAdded:Connect(function(v)
+    if notify == true and v:IsA("Tool") and v:FindFirstChild("preHandle") and v.Name ~= "Suke" and v.Name ~= "Kilo" and v.Name ~= "Spin" and v.Name ~= "PeliBag" and v.Name ~= "Mero" and v.Name ~= "Bari" and v.Name ~= "Gomu" and v.Name ~= "Horo" and v.Name ~= "Bomb" then
+        webhook(v)
     end
 end)
 
@@ -122,10 +117,12 @@ end)
 game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
  if key == "r" then
     Stealing = true
+    notify = true
  end
 end)
 game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
  if key == "t" then
     Stealing = false
+    notify = false
  end
 end)
